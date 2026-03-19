@@ -3,7 +3,7 @@
 A lightweight browser extension for transferring bookmarks between Chromium-based browsers and Firefox on Android — export from one, import into another, with local storage as the bridge.
 
 ![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg)
-![Version](https://img.shields.io/badge/version-3.0.0-green.svg)
+![Version](https://img.shields.io/badge/version-3.5.0-green.svg)
 ![JavaScript](https://img.shields.io/badge/javascript-ES6+-yellow.svg)
 
 ## 🎯 Purpose
@@ -81,7 +81,7 @@ A lightweight browser extension for transferring bookmarks between Chromium-base
 
 ### Prerequisites
 
-- Modern web browser (Chrome 88+, Firefox 109+, or Edge 88+)
+- Modern web browser (Chrome 92+, Firefox 109+, or Edge 92+)
 - Basic knowledge of JavaScript and browser extensions
 - Text editor or IDE (VS Code recommended)
 
@@ -151,12 +151,12 @@ Bookmark-Sync-Offline/
 
 | Browser | Version | Status |
 |---------|---------|--------|
-| Chrome  | 88+     | ✅ Supported |
-| Edge    | 88+     | ✅ Supported |
-| Firefox | 109+    | ✅ Supported |
-| Cromite | 142+    | ✅ Supported |
-| Safari  | -       | ❌ Not tested |
-| Opera   | 74+     | ⚠️ Desktop only (no extension support on Android) |
+| Chrome | 92+ | ✅ Supported |
+| Edge | 92+ | ✅ Supported |
+| Other Chromium-based Android browsers with extension support | 142+ | ✅ Supported |
+| Firefox & its Android forks | 109+ | ❌ Not working |
+| Safari | - | ❌ Not tested |
+| Opera | 74+ | ⚠️ Desktop only (no extension support on Android) |
 
 ## 📝 API Reference
 
@@ -230,7 +230,7 @@ Contributions are welcome! Here's how you can help:
 - [ ] Search functionality in manager
 - [ ] Cloud sync integration
 - [ ] Tag system for bookmarks
-- [ ] Keyboard shortcuts
+- [x] Keyboard shortcuts
 - [ ] Dark mode support
 - [ ] Bookmark statistics and analytics
 - [x] Duplicate detection
@@ -268,7 +268,18 @@ If you encounter any issues or have questions:
 
 ## 📋 Changelog
 
-### [3.0.0] - 2026-03-07 (Current)
+### [3.5.0] - 2026-03-19 (Current)
+
+**Fixed**
+- File input keyboard accessibility — replaced `display: none` with visually-hidden CSS pattern so keyboard users can Tab to the file picker and `:focus-within` focus ring works correctly
+- `aria-live` status region was silenced by `display: none` — element now stays in the accessibility tree at all times (collapsed via `max-height`) so screen readers correctly announce status updates
+- `Ctrl+Shift+B` shortcut replaced with `Ctrl+Shift+Y` — Chrome reserves `Ctrl+Shift+B` for the Bookmarks Bar toggle and silently ignores extensions attempting to claim it
+- Raised `minimum_chrome_version` from `88` to `92` — ES module service workers require Chrome 92+
+- Added `"scripts"` fallback in `background` for Firefox 109–120, which does not recognise the `service_worker` key until Firefox 121
+
+---
+
+### [3.0.0] - 2026-03-07 (Previous)
 
 **Fixed**
 - Wrap file import in `try-finally` for proper cleanup (`8ca470c`)

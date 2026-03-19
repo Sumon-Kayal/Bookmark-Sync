@@ -4,7 +4,18 @@ All notable changes to Bookmark Sync Offline are documented here.
 
 ---
 
-## [3.0.0] - 2026-03-07 (Current)
+## [3.5.0] - 2026-03-19
+
+### Fixed
+- **Accessibility: file input keyboard access** — replaced `display: none` on `input[type="file"]` with a visually-hidden pattern (`position: absolute; width/height: 1px; clip: rect(0,0,0,0)`). The input now stays in the accessibility tree, allowing keyboard users to Tab to it and trigger the file dialog. Also restores the previously dead `.file-input-wrapper:focus-within` focus ring.
+- **Accessibility: silent `aria-live` region** — removed `display: none` from `.status`. The element is now always present in the accessibility tree at page load (collapsed via `max-height: 0`), so screen readers correctly announce status updates when `.show` is applied.
+- **Browser shortcut collision** — changed `_execute_action` suggested key from `Ctrl+Shift+B` (reserved by Chrome for Bookmarks Bar toggle) to `Ctrl+Shift+Y` / `Command+Shift+Y` on Mac.
+- **Version compatibility: Chrome** — raised `minimum_chrome_version` from `88` to `92`. ES module service workers (`"type": "module"`) require Chrome 92+; Chrome 88–91 would fail to parse the background script.
+- **Version compatibility: Firefox** — Currently not supported.
+
+---
+
+## [3.0.0] - 2026-03-07 (Previous)
 
 ### Fixed
 - Wrap file import in `try-finally` for proper cleanup (`8ca470c`)

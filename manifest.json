@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Bookmark Sync",
-  "version": "3.0.0",
+  "version": "3.5.0",
   "description": "Sync, import, export and manage your browser bookmarks with automatic backup",
   "author": "Sumon Kayal",
   
@@ -21,6 +21,7 @@
   
   "background": {
     "service_worker": "background.js",
+    "scripts": ["background.js"],
     "type": "module"
   },
   
@@ -38,8 +39,8 @@
   "commands": {
     "_execute_action": {
       "suggested_key": {
-        "default": "Ctrl+Shift+B",
-        "mac": "Command+Shift+B"
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
       },
       "description": "Open Bookmark Sync"
     },
@@ -59,5 +60,5 @@
     }
   },
   
-  "minimum_chrome_version": "88"
+  "minimum_chrome_version": "121"
 }
