@@ -4,6 +4,16 @@ All notable changes to Bookmark Sync Offline are documented here.
 
 ---
 
+## [3.6.0] - 2026-03-19
+
+### Changed
+- **Raised minimum Chromium base to 140+** — `minimum_chrome_version` updated from `121` to `140` in `manifest.json`. This aligns with the minimum version of Chromium-based Android browsers (Cromite, Kiwi, etc.) confirmed to support the extension.
+- **Raised Firefox `strict_min_version` to `140.0`** — updated in `manifest.json` to match the minimum Firefox version in scope. Note: Firefox and its Android forks are currently not working with this extension.
+- **README: browser compatibility table** — Chrome, Edge, and Other Chromium-based Android rows updated from earlier baselines to `140+`. Firefox row version confirmed at `140+`.
+- **README: prerequisites** — development browser requirement updated to Chrome 140+ / Edge 140+ / Firefox 140+.
+
+---
+
 ## [3.5.0] - 2026-03-19
 
 ### Fixed

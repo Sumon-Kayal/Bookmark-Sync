@@ -3,7 +3,7 @@
 A lightweight browser extension for transferring bookmarks between Chromium-based browsers and Firefox on Android — export from one, import into another, with local storage as the bridge.
 
 ![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg)
-![Version](https://img.shields.io/badge/version-3.5.0-green.svg)
+![Version](https://img.shields.io/badge/version-3.6.0-green.svg)
 ![JavaScript](https://img.shields.io/badge/javascript-ES6+-yellow.svg)
 
 ## 🎯 Purpose
@@ -81,7 +81,7 @@ A lightweight browser extension for transferring bookmarks between Chromium-base
 
 ### Prerequisites
 
-- Modern web browser (Chrome 92+, Firefox 140+, or Edge 92+)
+- Modern web browser (Chrome 140+, Firefox 140+, or Edge 140+)
 - Basic knowledge of JavaScript and browser extensions
 - Text editor or IDE (VS Code recommended)
 
@@ -151,9 +151,9 @@ Bookmark-Sync-Offline/
 
 | Browser | Version | Status |
 |---------|---------|--------|
-| Chrome | 92+ | ✅ Supported |
-| Edge | 92+ | ✅ Supported |
-| Other Chromium-based Android browsers with extension support | 142+ | ✅ Supported |
+| Chrome | 140+ | ✅ Supported |
+| Edge | 140+ | ✅ Supported |
+| Other Chromium-based Android browsers with extension support | 140+ | ✅ Supported |
 | Firefox & its Android forks | 140+ | ❌ Currently Not working |
 | Safari | - | ❌ Not tested |
 | Opera | 74+ | ⚠️ Desktop only (no extension support on Android) |
