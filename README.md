@@ -154,7 +154,7 @@ Bookmark-Sync-Offline/
 | Chrome | 92+ | ✅ Supported |
 | Edge | 92+ | ✅ Supported |
 | Other Chromium-based Android browsers with extension support | 142+ | ✅ Supported |
-| Firefox & its Android forks | 109+ | ❌ Not working |
+| Firefox & its Android forks | 109+ | ❌ Currently Not working |
 | Safari | - | ❌ Not tested |
 | Opera | 74+ | ⚠️ Desktop only (no extension support on Android) |
 
