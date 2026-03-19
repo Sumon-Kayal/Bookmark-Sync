@@ -31,7 +31,7 @@ A lightweight browser extension for transferring bookmarks between Chromium-base
 
 ## 🚀 Installation
 
-### From Source (Development)
+### 💻 From Source (Development)
 
 1. **Clone the repository**
    ```bash
@@ -52,7 +52,7 @@ A lightweight browser extension for transferring bookmarks between Chromium-base
 
 ## 📖 Usage
 
-### Basic Operations
+### ⚡ Basic Operations
 
 1. **Initial Sync**
    - Click the extension icon in your browser toolbar
@@ -70,7 +70,7 @@ A lightweight browser extension for transferring bookmarks between Chromium-base
      - Move bookmarks between folders
      - Rename bookmarks or folders
 
-### Features Overview
+### 🗂️ Features Overview
 
 - **Popup Interface**: Quick access to pull, push, export, and import bookmarks
 - **Import File Page**: Full-page interface for importing bookmarks from JSON or HTML files
@@ -79,13 +79,13 @@ A lightweight browser extension for transferring bookmarks between Chromium-base
 
 ## 🛠️ Development Setup
 
-### Prerequisites
+### 📋 Prerequisites
 
 - Modern web browser (Chrome 140+, Firefox 140+, or Edge 140+)
 - Basic knowledge of JavaScript and browser extensions
 - Text editor or IDE (VS Code recommended)
 
-### Project Structure
+### 📁 Project Structure
 
 ```
 Bookmark-Sync-Offline/
@@ -102,14 +102,14 @@ Bookmark-Sync-Offline/
 └── .gitignore           # Git ignore rules
 ```
 
-### Key Files
+### 🗝️ Key Files
 
 - **manifest.json** - Defines extension properties, permissions, and scripts
 - **background.js** - Handles bookmark events and synchronization logic
 - **popup.js** - Controls the popup interface and user interactions
 - **manager.html** - Full-page bookmark import interface (file picker and drag-and-drop)
 
-### Development Workflow
+### 🔁 Development Workflow
 
 1. **Make Changes**
    ```bash
@@ -134,7 +134,7 @@ Bookmark-Sync-Offline/
 
 ## 🧪 Testing
 
-### Manual Testing Checklist
+### ✅ Manual Testing Checklist
 
 - [ ] Extension installs without errors
 - [ ] Popup opens and displays correctly
@@ -147,7 +147,7 @@ Bookmark-Sync-Offline/
 - [ ] Clear Staging Area wipes only extension storage
 - [ ] Extension icon displays properly
 
-### Browser Compatibility
+### 🌐 Browser Compatibility
 
 | Browser | Version | Status |
 |---------|---------|--------|
@@ -160,7 +160,7 @@ Bookmark-Sync-Offline/
 
 ## 📝 API Reference
 
-### Storage Structure
+### 🗃️ Storage Structure
 
 ```javascript
 // Bookmarks are stored in chrome.storage.local
@@ -179,7 +179,7 @@ Bookmark-Sync-Offline/
 }
 ```
 
-### Key Functions
+### ⚙️ Key Functions
 
 **background.js**
 - `initializeExtension()` — Sets default metadata on first install
@@ -213,7 +213,7 @@ Contributions are welcome! Here's how you can help:
    ```
 5. **Open a Pull Request**
 
-### Contribution Guidelines
+### 📏 Contribution Guidelines
 
 - Follow existing code style
 - Add comments for complex logic
