@@ -81,7 +81,7 @@ A lightweight browser extension for transferring bookmarks between Chromium-base
 
 ### Prerequisites
 
-- Modern web browser (Chrome 92+, Firefox 140+, or Edge 92+)
+- Modern web browser (Chrome 92+, Firefox 109+, or Edge 92+)
 - Basic knowledge of JavaScript and browser extensions
 - Text editor or IDE (VS Code recommended)
 
@@ -154,7 +154,7 @@ Bookmark-Sync-Offline/
 | Chrome | 92+ | ✅ Supported |
 | Edge | 92+ | ✅ Supported |
 | Other Chromium-based Android browsers with extension support | 142+ | ✅ Supported |
-| Firefox & its Android forks | 140+ | ❌ Currently Not working |
+| Firefox & its Android forks | 109+ | ❌ Currently Not working |
 | Safari | - | ❌ Not tested |
 | Opera | 74+ | ⚠️ Desktop only (no extension support on Android) |
 
