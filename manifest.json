@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Bookmark Sync",
-  "version": "3.5.0",
+  "version": "3.6.0",
   "description": "Sync, import, export and manage your browser bookmarks with automatic backup",
   "author": "Sumon Kayal",
   
@@ -56,9 +56,9 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "bookmark-sync@sumonkayal.dev",
-      "strict_min_version": "109.0"
+      "strict_min_version": "140.0"
     }
   },
   
-  "minimum_chrome_version": "121"
+  "minimum_chrome_version": "140"
 }
