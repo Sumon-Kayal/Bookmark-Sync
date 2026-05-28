@@ -20,7 +20,7 @@ A lightweight browser extension that adds bookmark export and import to Chromium
 
 ## 📱 Screenshot
 
-<img src="https://raw.githubusercontent.com/Sumon-Kayal/Bookmark-Sync-Offline/87429c477d9412c3df9a239ba2fd354190d327be/Screenshot_2026-03-07-16-11-27-843_org.cromite.cromite.jpg" width="320" alt="Bookmark Sync popup running on Android in Cromite, showing staged bookmarks with Pull from Browser, Push to Browser, Import File, Export JSON, Export HTML and Clear Staging Area buttons">
+<img src="https://raw.githubusercontent.com/Sumon-Kayal/Bookmark-Sync-Offline/refs/heads/Sumon-Kayal-patch-2/IMG_20260529_050534.jpg" width="320" alt="Bookmark Sync popup running on Android in Cromite, showing staged bookmarks with Pull from Browser, Push to Browser, Import File, Export JSON, Export HTML and Clear Staging Area buttons">
 
 ## ✨ Features
 
