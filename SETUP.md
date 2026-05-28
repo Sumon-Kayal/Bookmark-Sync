@@ -408,7 +408,7 @@ Create `webpack.config.js` for bundling and minification.
 
 1. **Package the extension**
    ```bash
-   zip -r bookmark-sync-v3.6.0.zip . \
+   zip -r bookmark-sync-v3.0.0.zip . \
      -x "*.git*" \
      -x "node_modules/*" \
      -x "tests/*" \
