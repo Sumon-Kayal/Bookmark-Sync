@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Bookmark Sync Offline",
-  "version": "3.6.0",
+  "version": "3.7.0",
   "description": "Sync, import, export and manage your browser bookmarks with automatic backup",
   "author": "Sumon Kayal",
   
