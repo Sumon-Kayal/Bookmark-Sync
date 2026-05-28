@@ -150,7 +150,7 @@ Bookmark-Sync-Offline/
 | Browser | Version | Status |
 |---------|---------|--------|
 | Cromite (Android) | 142+ | ✅ Supported |
-| Kiwi Browser (Android) | 88+ | ✅ Supported |
+| Ultimatum | 147+ | ❌ not tested yet|
 | Other Chromium-based browsers with extension support | 88+ | ✅ Supported |
 | Opera Android | - | ❌ No extension support |
 | Safari | - | ❌ Not supported |
