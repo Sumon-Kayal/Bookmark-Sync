@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Bookmark Sync Offline",
-  "version": "3.6.0",
+  "version": "3.7.0",
   "description": "Sync, import, export and manage your browser bookmarks with automatic backup",
   "author": "Sumon Kayal",
   
@@ -20,9 +20,7 @@
   ],
   
   "background": {
-    "service_worker": "background.js",
-    "scripts": ["background.js"],
-    "type": "module"
+    "service_worker": "background.js"
   },
   
   "action": {
@@ -50,13 +48,6 @@
         "mac": "Command+Shift+U"
       },
       "description": "Pull bookmarks from browser"
-    }
-  },
-  
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "bookmark-sync@sumonkayal.dev",
-      "strict_min_version": "140.0"
     }
   },
   

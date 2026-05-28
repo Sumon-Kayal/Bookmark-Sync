@@ -18,8 +18,7 @@
 
 /**
  * Bookmark Sync Offline - Background Service Worker
- * Cross-browser compatible (Chrome, Edge, Firefox)
- * All critical issues fixed
+ * Chromium MV3 (Cromite, Kiwi Browser, Chrome)
  */
 
 // Configuration
@@ -43,10 +42,7 @@ function logError(context, error) {
   console.error(`[BookmarkSync] Error in ${context}:`, error);
 }
 
-// MV3-compliant API namespace.
-// Both Chrome and Firefox MV3 expose the `chrome` namespace.
-// Firefox also exposes `browser` (Promise-based), but `chrome` works on both.
-const browserAPI = globalThis.browser ?? globalThis.chrome;
+const browserAPI = chrome;
 
 /**
  * Initialize extension on install/update
@@ -57,8 +53,6 @@ browserAPI.runtime.onInstalled.addListener(async (details) => {
   try {
     if (details.reason === 'install') {
       await initializeExtension();
-    } else if (details.reason === 'update') {
-      await migrateStorageIfNeeded();
     }
     
     await setupAlarms();
@@ -87,36 +81,6 @@ async function initializeExtension() {
     log('Extension initialized successfully');
   } catch (error) {
     logError('initializeExtension', error);
-  }
-}
-
-/**
- * Migrate from session storage to local storage (for users upgrading from v1)
- * storage.session is supported in Chrome MV3 (102+) and Firefox MV3 (115+)
- */
-async function migrateStorageIfNeeded() {
-  try {
-    // Check if old session storage data exists (for users upgrading from v1)
-    if (browserAPI.storage.session) {
-      const sessionData = await browserAPI.storage.session.get([CONFIG.STORAGE_KEY]);
-      
-      if (sessionData && sessionData[CONFIG.STORAGE_KEY]) {
-        log('Migrating data from session to local storage...');
-        
-        // Copy to local storage
-        await browserAPI.storage.local.set({
-          [CONFIG.STORAGE_KEY]: sessionData[CONFIG.STORAGE_KEY]
-        });
-        
-        // Clear session storage
-        await browserAPI.storage.session.remove([CONFIG.STORAGE_KEY]);
-        
-        log('Migration complete');
-      }
-    }
-  } catch (_error) {
-    // Ignore errors - session storage might not be supported
-    log('Session storage not available or migration not needed');
   }
 }
 
@@ -213,14 +177,14 @@ browserAPI.bookmarks.onMoved.addListener((id, _moveInfo) => {
  * Debounce popup notifications using alarms (MV3-safe)
  */
 function debounceNotifyPopup(message) {
-  // Store the latest message so the alarm handler can read it
-  browserAPI.storage.session?.set({ pendingNotify: message }).catch(() => {
-    // storage.session not available (Firefox < 121) — fall back to direct notify
-    notifyPopup(message);
-  });
+  // Notify immediately — packed Chrome clamps alarms to ~30s minimum
+  notifyPopup(message);
 
-  // (Re)create a 1-second one-shot alarm — recreating resets the timer
-  browserAPI.alarms.create(CONFIG.DEBOUNCE_ALARM, { delayInMinutes: 1 / 60 }); // ~1 second
+  // Also store + reschedule alarm as coarse debounce fallback (SW-safe)
+  browserAPI.storage.session
+    .set({ pendingNotify: message })
+    .catch(e => logError('debounceNotifyPopup', e));
+  browserAPI.alarms.create(CONFIG.DEBOUNCE_ALARM, { delayInMinutes: 1 / 60 });
 }
 
 /**
@@ -228,14 +192,14 @@ function debounceNotifyPopup(message) {
  */
 async function handleDebounceAlarm() {
   try {
-    const result = await browserAPI.storage.session?.get('pendingNotify');
+    const result = await browserAPI.storage.session.get('pendingNotify');
     const message = result?.pendingNotify;
     if (message) {
       await browserAPI.storage.session.remove('pendingNotify');
       notifyPopup(message);
     }
-  } catch {
-    // storage.session unavailable — nothing to do
+  } catch (error) {
+    logError('handleDebounceAlarm', error);
   }
 }
 
@@ -267,7 +231,7 @@ browserAPI.runtime.onMessage.addListener((message, _sender, sendResponse) => {
     return { success: false, error: 'Unknown message type' };
   };
 
-  // MV3: return true AND call sendResponse to support both Chrome and Firefox
+  // MV3: return true to keep the message channel open for the async response
   handle()
     .then(sendResponse)
     .catch(error => {
