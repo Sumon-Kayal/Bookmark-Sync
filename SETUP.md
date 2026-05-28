@@ -20,7 +20,7 @@ This guide will help you set up the development environment, understand the proj
 ### Required Software
 
 1. **Web Browser**
-   - Any Chromium-based browser with extension support
+   - Any Chromium-based Android browser with extension support
 
 2. **Code Editor** (Choose one)
    - VS Code (recommended) - [Download](https://code.visualstudio.com/)
