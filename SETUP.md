@@ -407,13 +407,6 @@ Create `webpack.config.js` for bundling and minification.
 ### Sideloading on Android (Cromite / Kiwi Browser)
 
 1. **Package the extension**
-   ```bash
-   zip -r bookmark-sync-v3.0.0.zip . \
-     -x "*.git*" \
-     -x "node_modules/*" \
-     -x "tests/*" \
-     -x "docs/*"
-   ```
 
 2. **Transfer to device**
    - Copy the `.zip` file to your Android device (via USB, cloud storage, or direct download)
