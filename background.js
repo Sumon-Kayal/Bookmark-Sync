@@ -177,11 +177,14 @@ browserAPI.bookmarks.onMoved.addListener((id, _moveInfo) => {
  * Debounce popup notifications using alarms (MV3-safe)
  */
 function debounceNotifyPopup(message) {
-  // Store the latest message so the alarm handler can read it
-  browserAPI.storage.session.set({ pendingNotify: message });
+  // Notify immediately — packed Chrome clamps alarms to ~30s minimum
+  notifyPopup(message);
 
-  // (Re)create a 1-second one-shot alarm — recreating resets the timer
-  browserAPI.alarms.create(CONFIG.DEBOUNCE_ALARM, { delayInMinutes: 1 / 60 }); // ~1 second
+  // Also store + reschedule alarm as coarse debounce fallback (SW-safe)
+  browserAPI.storage.session
+    .set({ pendingNotify: message })
+    .catch(e => logError('debounceNotifyPopup', e));
+  browserAPI.alarms.create(CONFIG.DEBOUNCE_ALARM, { delayInMinutes: 1 / 60 });
 }
 
 /**
