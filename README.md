@@ -153,10 +153,12 @@ Bookmark-Sync-Offline/
 | Kiwi Browser (Android) | 88+ | ✅ Supported |
 | Other Chromium-based browsers with extension support | 88+ | ✅ Supported |
 | Opera Android | - | ❌ No extension support |
-| Firefox / Firefox for Android | - | ❌ Not supported |
+| Firefox / Firefox for Android | - | ❌ Not working (see [CHANGELOG.md](CHANGELOG.md#360---2026-03-19)) |
 | Safari | - | ❌ Not supported |
 
 > **Note:** This extension targets browsers that support the Chrome Extensions API (MV3) but lack a native bookmark import/export feature. Desktop Chrome and Edge already have native bookmark import/export; they are supported but are not the primary target.
+
+> **Firefox Status:** Although `manifest.json` contains `browser_specific_settings.gecko` configuration, this represents attempted/partial Firefox compatibility work and **does not imply a working build**. Firefox and its Android forks are currently non-functional with this extension. See [CHANGELOG.md](CHANGELOG.md) for details.
 
 ## 📝 API Reference
 

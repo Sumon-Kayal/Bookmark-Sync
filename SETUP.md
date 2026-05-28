@@ -144,6 +144,15 @@ Create `.vscode/extensions.json`:
 
 #### Firefox Setup
 
+> **⚠️ WARNING:** Firefox and its Android forks are **currently not working** with this extension. See [CHANGELOG.md](CHANGELOG.md#360---2026-03-19) for details. The instructions below are for **contributors/testing purposes only** and do not represent a guaranteed working release. Firefox support is currently experimental and non-functional despite the presence of `browser_specific_settings.gecko` in manifest.json.
+
+**Testing Prerequisites:**
+- These instructions are intended for development/debugging only
+- Expect non-functional behavior in Firefox environments
+- Contributions to fix Firefox compatibility are welcome
+
+**Loading Extension (Temporary):**
+
 1. Navigate to `about:debugging#/runtime/this-firefox`
 
 2. Click "Load Temporary Add-on"
