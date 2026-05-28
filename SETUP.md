@@ -20,8 +20,8 @@ This guide will help you set up the development environment, understand the proj
 ### Required Software
 
 1. **Web Browser**
-   - Chrome 88+ / Edge 88+ (recommended for development)
-   - Firefox 109+ (for cross-browser testing)
+   - Cromite or Kiwi Browser on Android (primary targets)
+   - Any Chromium-based browser with extension support
 
 2. **Code Editor** (Choose one)
    - VS Code (recommended) - [Download](https://code.visualstudio.com/)
@@ -128,40 +128,17 @@ Create `.vscode/extensions.json`:
 
 ### Browser Setup
 
-#### Chrome/Edge Setup
+#### Chromium Android Setup (Cromite / Kiwi Browser)
 
-1. Open browser and navigate to:
-   - Chrome: `chrome://extensions/`
-   - Edge: `edge://extensions/`
+1. Open `chrome://extensions/` in your browser
 
-2. Enable "Developer mode" (toggle in top-right)
+2. Enable **"Developer mode"** (toggle in top-right)
 
-3. Click "Load unpacked"
+3. Tap **"Load unpacked"**
 
 4. Select your `Bookmark-Sync` folder
 
 5. Extension should now appear in your toolbar
-
-#### Firefox Setup
-
-> **⚠️ WARNING:** Firefox and its Android forks are **currently not working** with this extension. See [CHANGELOG.md](CHANGELOG.md#360---2026-03-19) for details. The instructions below are for **contributors/testing purposes only** and do not represent a guaranteed working release. Firefox support is currently experimental and non-functional despite the presence of `browser_specific_settings.gecko` in manifest.json.
-
-**Testing Prerequisites:**
-- These instructions are intended for development/debugging only
-- Expect non-functional behavior in Firefox environments
-- Contributions to fix Firefox compatibility are welcome
-
-**Loading Extension (Temporary):**
-
-1. Navigate to `about:debugging#/runtime/this-firefox`
-
-2. Click "Load Temporary Add-on"
-
-3. Navigate to your project folder
-
-4. Select `manifest.json`
-
-5. Extension is now loaded (temporary - will be removed on browser restart)
 
 ## Project Structure
 
@@ -262,7 +239,7 @@ Create or download icons in these sizes:
 - 16x16 (toolbar icon)
 - 32x32 (browser action icon)
 - 48x48 (extension management page)
-- 128x128 (Chrome Web Store)
+- 128x128 (extension management page)
 
 Update `manifest.json`:
 
@@ -427,34 +404,29 @@ Create `webpack.config.js` for bundling and minification.
 
 ## Deployment
 
-### Chrome Web Store
+### Sideloading on Android (Cromite / Kiwi Browser)
 
-1. **Create Developer Account**
-   - Go to [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole/)
-   - Pay one-time $5 registration fee
+1. **Package the extension**
+   ```bash
+   zip -r bookmark-sync-v3.6.0.zip . \
+     -x "*.git*" \
+     -x "node_modules/*" \
+     -x "tests/*" \
+     -x "docs/*"
+   ```
 
-2. **Prepare Assets**
-   - Screenshots (1280x800 or 640x400)
-   - Promotional images
-   - Detailed description
-   - Privacy policy (if collecting data)
+2. **Transfer to device**
+   - Copy the `.zip` file to your Android device (via USB, cloud storage, or direct download)
 
-3. **Upload Extension**
-   - Create zip file
-   - Upload to dashboard
-   - Fill in listing details
-   - Submit for review
+3. **Load in Cromite**
+   - Open `chrome://extensions/`
+   - Enable **Developer mode**
+   - Tap **Load unpacked** and select the extracted extension folder
 
-### Firefox Add-ons
-
-1. **Create Account**
-   - Go to [Firefox Add-on Developer Hub](https://addons.mozilla.org/developers/)
-
-2. **Submit Extension**
-   - Upload zip file
-   - Provide source code (if using minification)
-   - Fill in listing information
-   - Submit for review
+4. **Load in Kiwi Browser**
+   - Open `chrome://extensions/`
+   - Enable **Developer mode**
+   - Tap **+ (from .zip/.crx/.user.js)** and select the zip file directly
 
 ## Troubleshooting
 
@@ -506,7 +478,6 @@ debug('Syncing bookmarks...', bookmarkCount);
 
 ### Documentation
 - [Chrome Extension Docs](https://developer.chrome.com/docs/extensions/)
-- [Firefox Extension Docs](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions)
 - [Web APIs](https://developer.mozilla.org/en-US/docs/Web/API)
 
 ### Communities
