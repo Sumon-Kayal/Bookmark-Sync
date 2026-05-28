@@ -86,7 +86,7 @@ A lightweight browser extension that adds bookmark export and import to Chromium
 
 ### 📁 Project Structure
 
-```
+```text
 Bookmark-Sync-Offline/
 ├── manifest.json          # Extension manifest (MV3)
 ├── background.js          # Background service worker
