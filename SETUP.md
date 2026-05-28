@@ -127,7 +127,7 @@ Create `.vscode/extensions.json`:
 
 ### Browser Setup
 
-#### Chromium Android Setup (Cromite, Ultimatum)
+#### Chromium Android Setup (Cromite, Ultimatum - ⚠️ Experimental / community-tested)
 
 1. Open `chrome://extensions/` in your browser
 
