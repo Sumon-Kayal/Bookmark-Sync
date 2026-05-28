@@ -149,8 +149,8 @@ Bookmark-Sync-Offline/
 
 | Browser | Version | Status |
 |---------|---------|--------|
-| Cromite (Android) | 142+ | ✅ Supported |
-| Ultimatum | 147+ | ⚠️ Experimental / community-tested |
+| Cromite (Android) | 140+ | ✅ Supported |
+| Ultimatum | 140+ | ⚠️ Experimental / community-tested |
 | Other Chromium-based browsers with extension support | 140+ | ✅ Supported |
 | Opera Android | - | ❌ No extension support |
 | Safari | - | ❌ Not supported |
