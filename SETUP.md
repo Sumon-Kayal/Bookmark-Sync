@@ -20,7 +20,6 @@ This guide will help you set up the development environment, understand the proj
 ### Required Software
 
 1. **Web Browser**
-   - Cromite or Kiwi Browser on Android (primary targets)
    - Any Chromium-based browser with extension support
 
 2. **Code Editor** (Choose one)
@@ -128,7 +127,7 @@ Create `.vscode/extensions.json`:
 
 ### Browser Setup
 
-#### Chromium Android Setup (Cromite / Kiwi Browser)
+#### Chromium Android Setup (Cromite, Ultimatum)
 
 1. Open `chrome://extensions/` in your browser
 
@@ -416,7 +415,7 @@ Create `webpack.config.js` for bundling and minification.
    - Enable **Developer mode**
    - Tap **Load unpacked** and select the extracted extension folder
 
-4. **Load in Kiwi Browser**
+4. **Load in Ultimatum Browser**
    - Open `chrome://extensions/`
    - Enable **Developer mode**
    - Tap **+ (from .zip/.crx/.user.js)** and select the zip file directly
