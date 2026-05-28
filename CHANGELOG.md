@@ -3,6 +3,25 @@
 All notable changes to Bookmark Sync Offline are documented here.
 
 ---
+## [3.7.0] - 2026-05-29
+
+### Changed
+- **Chromium-only build** — extension scope narrowed to Chromium MV3 (Cromite, Kiwi Browser, Chrome). Firefox/Gecko support fully dropped in this variant; all cross-browser compatibility shims removed.
+- **`browserAPI` simplified to `chrome`** — removed `globalThis.browser ?? globalThis.chrome` fallback in both `background.js` and `popup.js`. Chromium always exposes the `chrome` namespace; the Firefox `browser` polyfill path is no longer needed.
+- **`manifest.json`: Firefox fields removed** — dropped `"scripts": ["background.js"]` (Firefox 109–120 fallback) and `"type": "module"` from the service worker definition. Removed the entire `browser_specific_settings` / Gecko block (`id`, `strict_min_version`).
+- **`popup.js`: Android Chromium bookmark import target rewritten** — replaced the old Firefox-aware parent-folder lookup (which matched `toolbar_____` ID and `/bookmarks\.bar|toolbar/i` regex) with an Android-first priority chain: Mobile Bookmarks (`id "3"`, the only folder visible in Android Chromium UI) → Bookmarks Bar (`id "1"`, desktop fallback) → Other Bookmarks (`id "2"`) → any non-URL permanent folder. Fixes imports silently landing in a hidden folder on Cromite and Kiwi.
+- **`styles.css`: Firefox-specific rules removed** — removed `-moz-osx-font-smoothing: grayscale` and the Firefox thin-scrollbar block (`scrollbar-width: thin; scrollbar-color`).
+- **`manager.html`: import hint updated** — browser list in the import description changed from "Chrome, Firefox, Edge, Safari" to "Cromite, Kiwi Browser, Chrome" to reflect the Chromium-only scope.
+
+### Removed
+- **`migrateStorageIfNeeded()`** — removed the v1→v2 session-to-local storage migration path from `background.js`. The migration was only needed for users upgrading from v1; carrying it forward indefinitely added dead weight.
+- **`update` install-reason hook** — removed the `details.reason === 'update'` branch that triggered `migrateStorageIfNeeded()` on extension update.
+
+### Fixed
+- **`storage.session` optional chaining removed** — `storage.session?.set` and `storage.session?.get` in `background.js` replaced with direct calls. Chromium has supported `storage.session` since Chrome 102; optional chaining was a Firefox compat guard that is no longer applicable.
+- **`handleDebounceAlarm` error catch** — the previously silent `catch {}` block now calls `logError('handleDebounceAlarm', error)` for consistency with the rest of the error-handling pattern.
+
+---
 
 ## [3.6.0] - 2026-03-19
 

@@ -1,22 +1,13 @@
 /**
  * Bookmark Sync - Popup Script
- * Cross-browser compatible (Chrome, Edge, Firefox)
- * All critical issues fixed:
- * ✅ Storage API fixed (local instead of session)
- * ✅ Error handling added everywhere
- * ✅ URL validation for security
- * ✅ Promise-based APIs
- * ✅ Loading states
+ * Chromium MV3 (Cromite, Kiwi Browser, Chrome)
  */
 
 // CRITICAL FIX: Use local storage instead of session storage
 const STORAGE_KEY = 'bookmarks_data';
 const METADATA_KEY = 'sync_metadata';
 
-// MV3-compliant API namespace.
-// Both Chrome and Firefox MV3 expose the `chrome` namespace.
-// Firefox also exposes `browser` (Promise-based), but `chrome` works on both.
-const browserAPI = globalThis.browser ?? globalThis.chrome;
+const browserAPI = chrome;
 
 // UI Elements
 const countEl = document.getElementById('count');
@@ -248,7 +239,7 @@ async function handlePull() {
   showStatus('Pulling bookmarks from browser...', 'info');
   
   try {
-    // Use Promise-based API (works on both Chrome and Firefox)
+    // Chromium bookmarks API (Promise-based)
     const tree = await browserAPI.bookmarks.getTree();
     
     const bookmarks = [];
@@ -373,15 +364,17 @@ async function findOrCreateFolder(title) {
   try {
     const tree = await browserAPI.bookmarks.getTree();
 
-    // Find a safe parent bar: Chrome id "1", Firefox "toolbar_____", or title match
-    let parentBar = null;
-    if (tree[0].children) {
-      parentBar = tree[0].children.find(n =>
-        n.id === '1' || n.id === 'toolbar_____' ||
-        /bookmarks\.bar|toolbar/i.test(n.title)
-      );
-    }
-    if (!parentBar) parentBar = tree[0]; // fallback to root
+    // On Android Chromium (Cromite, Kiwi), id "3" is Mobile Bookmarks — the
+    // only folder visible to users. Bookmarks Bar (id "1") exists in the tree
+    // but is hidden from the Android UI, so we prefer Mobile Bookmarks first.
+    // On desktop Chromium, id "3" may be absent; fall back to Bookmarks Bar (id "1").
+    // Never use the root node (id "0") as parentId — Chromium blocks creates there.
+    const children = tree[0].children || [];
+    const parentBar =
+      children.find(n => n.id === '3') ||   // Mobile Bookmarks (Android)
+      children.find(n => n.id === '1') ||   // Bookmarks Bar (desktop)
+      children.find(n => n.id === '2') ||   // Other Bookmarks
+      children.find(n => !n.url);           // any permanent folder
 
     // Only search direct children of the bar — avoids wrong deep matches
     const existingFolder = (parentBar.children || []).find(

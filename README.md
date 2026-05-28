@@ -1,20 +1,18 @@
-# 🔖 Bookmark Sync Offline
+# 🔖 Bookmark Sync Offline 
 
-A lightweight browser extension that adds bookmark export and import to Chromium-based browsers that support extensions but lack a native bookmark management UI.
+A lightweight browser extension for transferring bookmarks between Chromium-based browsers and Firefox on Android — export from one, import into another, with local storage as the bridge.
 
 ![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg)
-![Version](https://img.shields.io/badge/version-3.6.0-green.svg)
+![Version](https://img.shields.io/badge/version-3.7.0-green.svg)
 ![JavaScript](https://img.shields.io/badge/javascript-ES6+-yellow.svg)
 
 ## 🎯 Purpose
 
-> **Built for Chromium-based browsers for Android that support extensions but have no built-in bookmark import/export.**
+> **This extension is designed to transfer bookmarks between:**
+> - 🟠 **Chromium-based Android browsers that support extensions** (e.g. Cromite, Kiwi)
+> - 🦊 **Firefox for Android — including its forks that support browser extensions**
 >
-> Browsers like Ultimatum and other chromium forks for Android allow you to install extensions — but offer no way to export or import bookmarks through the UI. This extension fills that gap.
->
-> - 📤 **Export** your bookmarks as JSON or HTML at any time
-> - 📥 **Import** bookmarks from a file into the browser
-> - 🔄 **Sync** your bookmarks across browsers using a local file as the bridge — no account, no server
+> 💡 **Why Firefox for Android?** Firefox for Android and its forks do not have a built-in bookmark export feature. This extension fills that gap — letting you export your bookmarks as JSON or HTML directly from the browser.
 
 ---
 
@@ -24,8 +22,7 @@ A lightweight browser extension that adds bookmark export and import to Chromium
 
 ## ✨ Features
 
-- 📤 **Export Bookmarks** - Save all your bookmarks as a JSON or HTML file at any time
-- 📥 **Import Bookmarks** - Load bookmarks from a JSON or HTML file into the browser
+- 🔄 **Cross-Browser Transfer** - Move bookmarks between Chromium browsers and Firefox (including Android forks)
 - 📡 **Change Detection** - Background listener detects bookmark changes and notifies the popup in real time
 - 📊 **Staging Area** - Review and manage bookmarks before pushing them to the browser
 - 🎯 **Lightweight** - Minimal resource usage with fast performance
@@ -42,28 +39,32 @@ A lightweight browser extension that adds bookmark export and import to Chromium
    cd Bookmark-Sync-Offline
    ```
 
-2. **Load in your Chromium-based browser**
-   - Open `chrome://extensions/` (or the equivalent in your browser)
-   - Enable **"Developer mode"** (toggle in top-right corner)
-   - Click **"Load unpacked"**
+2. **Load in Chrome/Edge**
+   - Open `chrome://extensions/` (or `edge://extensions/`)
+   - Enable "Developer mode" (toggle in top-right corner)
+   - Click "Load unpacked"
    - Select the `Bookmark-Sync-Offline` folder
+
+3. **Load in Firefox**
+   - Open `about:debugging#/runtime/this-firefox`
+   - Click "Load Temporary Add-on"
+   - Select any file from the `Bookmark-Sync-Offline` folder (e.g., `manifest.json`)
 
 ## 📖 Usage
 
 ### ⚡ Basic Operations
 
-1. **Export your bookmarks**
+1. **Initial Sync**
    - Click the extension icon in your browser toolbar
-   - Click **"Pull from Browser"** to stage all your bookmarks
-   - Click **"Export JSON"** or **"Export HTML"** to save the file
+   - Click **"Pull from Browser"** to save all your bookmarks to the staging area
+   - The count display will update to show how many bookmarks were staged
 
-2. **Import bookmarks**
-   - Click **"Import File"** to open the import page
-   - Use the file picker to load a JSON or HTML bookmark file
-   - Click **"Push to Browser"** to add them to your browser
+2. **Import Bookmarks**
+   - Click **"Import File"** to open the import page, then use the file picker to load bookmarks from a JSON or HTML file
+   - Once imported, click **"Push to Browser"** to add them to your browser
 
-3. **Automatic change tracking**
-   - The extension automatically detects when you:
+3. **Automatic Sync**
+   - The extension automatically syncs when you:
      - Add new bookmarks
      - Delete bookmarks
      - Move bookmarks between folders
@@ -80,7 +81,7 @@ A lightweight browser extension that adds bookmark export and import to Chromium
 
 ### 📋 Prerequisites
 
-- A Chromium-based browser with extension support (see compatibility table below)
+- Modern web browser (Chrome 140+, Firefox 140+, or Edge 140+)
 - Basic knowledge of JavaScript and browser extensions
 - Text editor or IDE (VS Code recommended)
 
@@ -88,7 +89,7 @@ A lightweight browser extension that adds bookmark export and import to Chromium
 
 ```
 Bookmark-Sync-Offline/
-├── manifest.json          # Extension manifest (MV3)
+├── manifest.json          # Extension manifest
 ├── background.js          # Background service worker
 ├── popup.html            # Extension popup interface
 ├── popup.js              # Popup functionality
@@ -117,7 +118,8 @@ Bookmark-Sync-Offline/
    ```
 
 2. **Reload Extension**
-   - Go to `chrome://extensions/` and click the reload icon
+   - Chrome/Edge: Go to `chrome://extensions/` and click the reload icon
+   - Firefox: Click "Reload" on `about:debugging`
 
 3. **Test Features**
    - Test bookmark creation, deletion, and modification
@@ -149,13 +151,12 @@ Bookmark-Sync-Offline/
 
 | Browser | Version | Status |
 |---------|---------|--------|
-| Cromite (Android) | 140+ | ✅ Supported |
-| Ultimatum | 140+ | ⚠️ Experimental / community-tested |
-| Other Chromium-based browsers with extension support | 140+ | ✅ Supported |
-| Opera Android | - | ❌ No extension support |
-| Safari | - | ❌ Not supported |
-
-> **Note:** This extension targets Chromium-based Android browsers that support extensions but lack a native bookmark import/export feature.
+| Chrome | 140+ | ✅ Supported |
+| Edge | 140+ | ✅ Supported |
+| Other Chromium-based Android browsers with extension support | 140+ | ✅ Supported |
+| Firefox & its Android forks | 140+ | ❌ Currently Not working |
+| Safari | - | ❌ Not tested |
+| Opera | 74+ | ⚠️ Desktop only (no extension support on Android) |
 
 ## 📝 API Reference
 
@@ -227,6 +228,7 @@ Contributions are welcome! Here's how you can help:
 ## 📋 Roadmap
 
 - [ ] Search functionality in manager
+- [ ] Cloud sync integration
 - [ ] Tag system for bookmarks
 - [x] Keyboard shortcuts
 - [ ] Dark mode support
@@ -247,7 +249,7 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 ## 🙏 Acknowledgments
 
 - Thanks to all contributors
-- Inspired by the need for better bookmark management on Android browsers
+- Inspired by the need for better bookmark management
 - Built with modern web extension APIs
 
 ## 📞 Support
@@ -260,6 +262,8 @@ If you encounter any issues or have questions:
 
 ## 🔗 Links
 
+- [Chrome Web Store](#) (Coming soon)
+- [Firefox Add-ons](#) (Coming soon)
 - [Documentation](https://github.com/Sumon-Kayal/Bookmark-Sync-Offline/wiki) (Coming soon)
 
 ## 📋 [Changelog](https://github.com/Sumon-Kayal/Bookmark-Sync-Offline/blob/main/CHANGELOG.md)
