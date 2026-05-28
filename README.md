@@ -3,7 +3,7 @@
 A lightweight browser extension that adds bookmark export and import to Chromium-based browsers that support extensions but lack a native bookmark management UI.
 
 ![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg)
-![Version](https://img.shields.io/badge/version-3.6.0-green.svg)
+![Version](https://img.shields.io/badge/version-3.7.0-green.svg)
 ![JavaScript](https://img.shields.io/badge/javascript-ES6+-yellow.svg)
 
 ## 🎯 Purpose
